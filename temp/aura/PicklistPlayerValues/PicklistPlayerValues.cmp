@@ -1,6 +1,0 @@
-<aura:component controller="page_PlayerPicklistController" access="global">
-    <aura:attribute name="team" type="String"/>
-    <aura:attribute name="picklistPlayerValues" type="Object"/>
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <aura:handler name="change" value="{!v.team}" action="{!c.doChange}"/>
-</aura:component>

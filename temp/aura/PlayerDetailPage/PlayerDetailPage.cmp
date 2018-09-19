@@ -1,4 +1,0 @@
-<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
-    <c:PlayerDetails playerId="{!v.recordId}"/>
-    <c:DetailCards playerId="{!v.recordId}"/>
-</aura:component>
