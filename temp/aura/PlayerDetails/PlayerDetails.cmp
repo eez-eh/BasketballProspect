@@ -1,0 +1,64 @@
+<aura:component >
+    <aura:attribute name="playerId" type="Id"/>
+    <aura:attribute name="recordDetails" type="Player__c"/>
+    <aura:attribute name="recordError" type="String"/>
+    <force:recordData aura:id="recordLoader"
+                      recordId="{!v.playerId}"
+                      targetFields="{!v.recordDetails}"
+                      targetError="{!v.recordError}"
+                      layoutType="FULL"
+                      mode="VIEW"/>
+    <div class="Record Details">
+        <lightning:card title="Player Details">
+            <div class="slds-p-horizontal_medium slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-4 slds-p-bottom_small">
+                    <p class="slds-text-body_small slds-text-color_weak">Position:</p>
+                    <p class="slds-text-body_regular slds-border_bottom">
+                        <lightning:formattedText value="{!v.recordDetails.Position__c}"/></p>                
+                </div>
+                <div class="slds-col slds-size_1-of-4 slds-p-bottom_small">
+                    <p class="slds-text-body_small slds-text-color_weak">Height:</p>
+                    <p class="slds-text-body_regular slds-border_bottom">
+                        <lightning:formattedText value="{!v.recordDetails.Height__c}"/></p>                
+                </div>
+                <div class="slds-col slds-size_1-of-4 slds-p-bottom_small">
+                    <p class="slds-text-body_small slds-text-color_weak">Weight:</p>
+                    <p class="slds-text-body_regular slds-border_bottom">
+                        <lightning:formattedText value="{!v.recordDetails.Weight__c}"/></p>                
+                </div>
+                <div class="slds-col slds-size_1-of-4 slds-p-bottom_small">
+                    <p class="slds-text-body_small slds-text-color_weak">Birthdate:</p>
+                    <p class="slds-text-body_regular slds-border_bottom">
+                        <lightning:formattedText value="{!v.recordDetails.Birthdate__c}"/></p>                
+                </div>
+                <div class="slds-col slds-size_1-of-4 slds-p-bottom_small">
+                    <p class="slds-text-body_small slds-text-color_weak">Country:</p>
+                    <p class="slds-text-body_regular slds-border_bottom">
+                        <lightning:formattedText value="{!v.recordDetails.Country__c}"/></p>                
+                </div>
+                <div class="slds-col slds-size_1-of-4 slds-p-bottom_small">
+                    <p class="slds-text-body_small slds-text-color_weak">School:</p>
+                    <p class="slds-text-body_regular slds-border_bottom">
+                        <lightning:formattedText value="{!v.recordDetails.School__c}"/></p>                
+                </div>
+                <div class="slds-col slds-size_1-of-4 slds-p-bottom_small">
+                    <p class="slds-text-body_small slds-text-color_weak">Season Experience:</p>
+                    <p class="slds-text-body_regular slds-border_bottom">
+                        <lightning:formattedNumber value="{!v.recordDetails.Season_Experience__c}"/></p>               
+                </div>
+                <div class="slds-col slds-size_1-of-4 slds-p-bottom_small">
+                    <p class="slds-text-body_small slds-text-color_weak">Team:</p>
+                    <p class="slds-text-body_regular slds-border_bottom">
+                        <lightning:formattedText value="{!v.recordDetails.Team_Name__c}"/></p>                
+                </div>
+                <div class="slds-col slds-size_1-of-4 slds-p-bottom_small">
+                    <c:SeasonSelect playerId="{!v.playerId}"/>                
+                </div>
+            </div>  
+        </lightning:card>
+    </div>
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+    	<div class="recordError">
+        	{!v.recordError}</div>
+    </aura:if>
+</aura:component>

@@ -1,0 +1,47 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global" controller="page_NewProspectController">
+    <aura:attribute name="picklistTeamValues" type="Object"/>
+    <aura:attribute name="picklistPlayerValues" type="Object"/>
+    <aura:attribute name="selectedTeam" type="String" default="Atlanta Hawks"/>
+	<aura:attribute name="newPlayerRecord" type="Player__c"/>
+    <aura:attribute name="isLoading" type="Boolean" default="false"/>
+    <force:recordData aura:id="forceRecord"
+                      recordId="{!v.recordId}"
+                      targetFields="{!v.newPlayerRecord}"
+                      fields="First_Name__c, Name, Team_Abbreviation__c, Team_Name__c, ExternalID__c, Birthdate__c, Country__c, Height__c, 
+                              Position__c, School__c, Season_Experience__c, Weight__c"
+                      mode="EDIT"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <c:PicklistTeamValues picklistTeamValues="{!v.picklistTeamValues}"/>
+    <c:PicklistPlayerValues team="{!v.selectedTeam}" picklistPlayerValues="{!v.picklistPlayerValues}"/>
+    <aura:if isTrue="{!v.isLoading}">
+        <div class="spinner">
+            <lightning:spinner alternativeText="Loading" size="large"/>
+        </div>
+        <aura:set attribute="else">
+            <div role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">New Player Profile</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium slds-grid">
+                        <lightning:select aura:id="team" name="team" label="Team" onchange="{!c.onChange}" value="{!v.picklistTeamValues[0]}" class="slds-size--1-of-2 slds-p-horizontal_x-small">
+                            <aura:iteration items="{!v.picklistTeamValues}" var="teamItem">
+                                <option value="{!teamItem}">{!teamItem}</option>
+                            </aura:iteration>
+                        </lightning:select>
+                        <lightning:select aura:id="fullName" name="fullName" label="Full Name" value="{!v.picklistPlayerValues[0]}" class="slds-size--1-of-2 slds-p-horizontal_x-small">
+                            <aura:iteration items="{!v.picklistPlayerValues}" var="playerItem">
+                                <option value="{!playerItem}">{!playerItem}</option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancelDialog}"/>
+                        <lightning:button variant="brand" label="Add Prospect" onclick="{!c.addPlayer}"/>
+                    </div>
+                </div>
+            </div>
+			<div class="slds-backdrop slds-backdrop_open"></div>            
+        </aura:set>
+    </aura:if>	
+</aura:component>

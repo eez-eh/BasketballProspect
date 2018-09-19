@@ -1,0 +1,23 @@
+<aura:component controller="page_DetailCardsController">
+    <aura:attribute name="seasonId" type="id"/>
+    <aura:attribute name="playerId" type="id"/>
+    <aura:attribute name="games" type="List"/>
+    <aura:attribute name="lastGames" type="List"/>
+    <aura:attribute name="seasonAvg" type="Game__c"/>
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="c:SeasonSelected" action="{!c.handleSeasonSelect}"/>
+    
+    <lightning:card title="{!'Game Stats - Season ' + v.seasonAvg.Name}">
+        <lightning:tabset selectedTabId="overview">
+            <lightning:tab label="OVERVIEW" id="overview">
+                <c:SeasonOverview lastGames="{!v.lastGames}" seasonAvg="{!v.seasonAvg}"/>
+            </lightning:tab>
+            <lightning:tab label="GAME LOG" id="games">
+                <c:GameLogs games="{!v.games}"/>
+            </lightning:tab>
+            <lightning:tab label="CHARTS" id="charts">
+            
+            </lightning:tab>
+        </lightning:tabset>
+    </lightning:card>
+</aura:component>

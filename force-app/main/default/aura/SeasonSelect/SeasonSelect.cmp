@@ -1,0 +1,12 @@
+<aura:component controller="page_SelectSeasonController">
+    <aura:attribute name="playerId" type="Id"/>
+	<aura:attribute name="seasons" type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:registerEvent name="seasonSelectedEvent" type="c:SeasonSelected"/>
+
+    <lightning:select name="season" label="Select a season:" aura:id="season" onchange="{!c.doChange}">
+        <aura:iteration items="{!v.seasons}" var="season">
+            <option value="{!season.Id}">{!season.Name}</option>
+        </aura:iteration>    
+    </lightning:select>
+</aura:component>
