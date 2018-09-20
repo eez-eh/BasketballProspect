@@ -1,4 +1,4 @@
-<aura:component implements="force:lightningQuickAction,force:hasRecordId" controller="NewProspectController" access="global">
+<aura:component implements="force:lightningQuickAction,force:hasRecordId" controller="page_NewProspectController" access="global">
     <aura:attribute name="player" type="Player__c"/>
     <force:recordData aura:id="forceRecord"
                       recordId="{!v.recordId}"
