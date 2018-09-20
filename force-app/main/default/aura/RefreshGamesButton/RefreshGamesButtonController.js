@@ -3,7 +3,7 @@
 		var action = component.get("c.gameCallout");
         // refreshes current season's games
         action.setParams({
-            "seasonExp": "0",
+            "playerId": component.get("v.recordId"),
             "externalId": component.get("v.player.ExternalID__c")
         });
         action.setCallback(this, function(response) {
