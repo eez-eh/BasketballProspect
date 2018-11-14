@@ -8,9 +8,7 @@ public class ReturnedGames implements IReturnedRecords {
     }
     
     public List<Game__c> manageReturnedRecords(HttpResponse response) {
-        // Deserialize the response into a list of records 
         List<List<String>> rows = deserializeRespone(response);
-        // Create games records to return
         List<Game__c> games = new List<Game__c>();
         
         for (List<String> row : rows) {
@@ -28,7 +26,7 @@ public class ReturnedGames implements IReturnedRecords {
                 FT__c = Decimal.valueOf(row[15]),
                 FTA__c = Integer.valueOf(row[14]),
                 FTM__c = Integer.valueOf(row[13]),
-                Game_Date__c = row[3],
+                Game_Date__c = parseDate(row[3]),
                 Name = row[4],
                 GameId__c = row[2]+row[1],
                 MIN__c = Integer.valueOf(row[6]),
@@ -46,9 +44,41 @@ public class ReturnedGames implements IReturnedRecords {
         } 
         return games;
     }  
+    
     // Deserialize the response into a list of records 
     private List<List<String>> deserializeRespone(HttpResponse response) {
         GameResponse gamesRsp = (GameResponse)JSON.deserialize(response.getBody(), GameResponse.class);
         return gamesRsp.resultSets[0].rowSet;
+    }
+    
+    // Create Date field from text input
+    private Date parseDate(String textDate) {
+        String year = textDate.substring(8, 12);
+		String month = getMonthNumber(textDate.substring(0, 3));
+		String day = textDate.substring(4, 6);
+		String fullDate = year + '-' + month + '-' + day;
+		return Date.valueOf(fullDate);
+    }
+    
+    // Get month number from abbreviation
+    private String getMonthNumber(String abbr) {
+        switch on abbr {
+            when 'JAN' { return '1'; }
+            when 'FEB' { return '2'; }
+            when 'MAR' { return '3'; }
+            when 'APR' { return '4'; }
+            when 'MAY' { return '5'; }
+            when 'JUN' { return '6'; }
+            when 'JUL' { return '7'; }
+            when 'AUG' { return '8'; }
+            when 'SEP' { return '9'; }
+            when 'OCT' { return '10'; }
+            when 'NOV' { return '11'; }
+            when 'DEC' { return '12'; }
+            when else { 
+                system.debug('unexpected month: ' + abbr); 
+            	return '0';
+            }
+        }
     }
 }

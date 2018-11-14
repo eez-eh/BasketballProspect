@@ -13,11 +13,13 @@ public class WebServiceFactoryMock implements System.StubProvider {
             }
 			return null;            
         }
+    
     private class MockEndpoint implements INbaEndpoint {
         public String createEndpoint() {
             return 'mock endpoint';
         }
     }
+    
     private class MockCallout implements ICallout {
         public HttpResponse createCallout(String arg1, String arg2) {
             HttpResponse response = new HttpResponse();
@@ -25,6 +27,7 @@ public class WebServiceFactoryMock implements System.StubProvider {
             return response;
         }
     }
+    
     private class MockResponseManager implements IReturnedRecords {
         public List<sObject> manageReturnedRecords(HttpResponse response) {
             SObjectFactory factory = new test_f_PlayerFactory();

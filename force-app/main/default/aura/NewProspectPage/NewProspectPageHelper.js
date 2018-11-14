@@ -41,7 +41,6 @@
                 tempRec.saveRecord($A.getCallback(function(result) {
                     console.log(result.state);
                     if (result.state === "SUCCESS") {
-                        // Create games records
                         var recId = result.recordId;
                         self.createGames(component, playerId, recId);
                     } else {
@@ -73,12 +72,12 @@
             if (component.isValid() && state === "SUCCESS") {
                 resultsToast.setParams({
                     "title": "Saved",
-                    "message": "Records are successfully saved."
+                    "message": "New profile has been successfully added."
                 });
                 resultsToast.fire();
+                // Delete selected player from list of prospect to avoid duplication
                 self.deleteProspect(component, extId);
                 console.log("Games added successfuly");
-                // Navigate to new record page
                 self.navigateTo(component, recId);
             } else if (result.state === "ERROR") {
                 resultsToast.setParams({
@@ -99,7 +98,7 @@
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (component.isValid() && state === "SUCCESS") {
-            	console.log("Prospect record deleted successfuly") 
+            	console.log("Prospect record successfuly deleted.") 
             }
         })
         $A.enqueueAction(action);

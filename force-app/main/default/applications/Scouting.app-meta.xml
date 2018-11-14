@@ -11,8 +11,6 @@
     <navType>Standard</navType>
     <tabs>Player__c</tabs>
     <tabs>Potential_Prospect__c</tabs>
-    <tabs>Season__c</tabs>
-    <tabs>Game__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Scouting_UtilityBar</utilityBar>
 </CustomApplication>

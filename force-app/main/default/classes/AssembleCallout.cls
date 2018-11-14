@@ -10,11 +10,12 @@ public class AssembleCallout {
         httpCallout = ws.getHttpCallout();
         responseManager = ws.getResponseManager();
     }
-    // make a callout
+    
     public List<sObject> makeCallout() {
         List<sObject> objects = null;
         String endpoint = nbaEndpoint.createEndpoint();
         HttpResponse response = httpCallout.createCallout(method, endpoint);
+        
         if (response.getStatusCode() == 200) {
         	objects = responseManager.manageReturnedRecords(response); 
         } else {

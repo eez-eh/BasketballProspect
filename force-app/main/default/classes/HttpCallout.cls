@@ -1,5 +1,4 @@
-public with sharing class HttpCallout implements ICallout {    
-    // make a web service calllout 
+public class HttpCallout implements ICallout {    
     public HttpResponse createCallout(String method, String endpoint) {
         Http http = new Http();
         HttpRequest request = new HttpRequest();

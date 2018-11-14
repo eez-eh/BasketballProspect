@@ -1,20 +1,19 @@
 public with sharing class page_NewProspectController {
 	@AuraEnabled
-    // Get palyer's external Id
     public static String getExternalPlayerID(String fullName, String team) {
         Potential_Prospect__c prospect = ProspectInfo.getInstance(fullName, team).prospect;
         return prospect.ExternalId__c;
     }
+    
     @AuraEnabled
-    // Make a callout to retrieve player's profile
     public static Player__c playerCallout(String externalId) {
         IWebServiceFactory playerCallout = new PlayerCallout(externalId);
         AssembleCallout callout = new AssembleCallout(playerCallout);
         List<sObject> objects = callout.makeCallout();
         return (Player__c)objects[0];
     }
+    
     @AuraEnabled
-    // Detlete player's record from list of potential prospects
     public static void deleteProspect(String externalId) {
         Potential_Prospect__c playerToDelete = [SELECT Id FROM Potential_Prospect__c WHERE ExternalID__c = :externalId LIMIT 1];
         try {
@@ -26,10 +25,12 @@ public with sharing class page_NewProspectController {
             throw auraError;
         }
     }
+    
     @AuraEnabled
     public static void gameCallout(String externalId, Id playerId) {
         Integer yearsAgo = 0;
         SeasonInfo sInfo = new SeasonInfo(Date.today());
+        
         if (Test.isRunningTest()) {
             sInfo = (SeasonInfo)Test.createStub(SeasonInfo.class, new SeasonInfoAugustMock());
         } 
@@ -39,9 +40,7 @@ public with sharing class page_NewProspectController {
         List<Season__c> seasonsList = PlayerExperienceInfo.getInstance(externalId, sInfo).seasons;
         // Aggregate all games from selected seasons
         for (Season__c season : seasonsList) {
-        	// Get current Season Id
             Id currentSeasonId = season.Id;
-            // Make a callout
             IWebServiceFactory gamesCallout = new GamesCallout(externalId, playerId, currentSeasonId, yearsAgo);
             AssembleCallout callout = new AssembleCallout(gamesCallout);
             List<sObject> objects = callout.makeCallout();
@@ -50,7 +49,6 @@ public with sharing class page_NewProspectController {
             yearsAgo++;
         }
         try {
-            // Upsert games based on externalId concatenated with playerId
             database.upsert(games, Game__c.Fields.GameId__c);
             // Add season average game records
             List<Game__c> seasonStats = getSeasonAverageStats(seasonsIds, playerId);
@@ -66,16 +64,14 @@ public with sharing class page_NewProspectController {
 
     }
 
-    // Get season average game records
     private static List<Game__c> getSeasonAverageStats(List<Id> seasonsIds, Id playerId) {
-        // Get all seasons map
         Map<Id, Season__c> seasonsMap = new Map<Id, Season__c>([SELECT Id, Name FROM Season__c WHERE Id IN :seasonsIds]);
-        // Get average results in every season
+        // Get average results from every season
         List<AggregateResult> groupedResults = [SELECT Avg(Plus_minus__c), Avg(AST__c), Avg(BLK__c), Avg(DREB__c), Avg(FG__c), Avg(FG3__c), 
                                					Avg(FG3A__c), Avg(FG3M__c), Avg(FGA__c), Avg(FGM__c), Avg(FT__c), Avg(FTA__c), Avg(FTM__c), 
                                					Avg(OREB__c), Avg(PF__c), Avg(PTS__c), Avg(REB__c), Avg(STL__c), Avg(TOV__c), Avg(MIN__c),
                                                 Count(W_L__c) FROM Game__c
-                               					WHERE Player__c =: playerId AND Season__c IN :seasonsIds GROUP BY Season__c];
+                               					WHERE Player__c = :playerId AND Season__c IN :seasonsIds GROUP BY Season__c ORDER BY Season__c DESC];
         // Create season average records for every season
         List<Game__c> seasonStats = new List<Game__c>();
         for (Integer i = 0; i < seasonsIds.size(); i++) {

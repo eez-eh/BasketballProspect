@@ -4,8 +4,13 @@
 		var action = component.get("c.prospectsCallout");
         action.setCallback(this, function(response) {
             var state = response.getState();
+            var resultsToast = $A.get("e.force:showToast");
             if (component.isValid() && state === "SUCCESS") {
-                console.log("Prospects added successfuly");
+                 resultsToast.setParams({
+                    "title": "Refreshed",
+                    "message": "List of prospects has been successfuly refreshed."
+                });
+                resultsToast.fire();
                 self.navigateTo();
             }
         });

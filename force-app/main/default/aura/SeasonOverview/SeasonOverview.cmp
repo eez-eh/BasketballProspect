@@ -88,7 +88,7 @@
                 <aura:iteration items="{!v.lastGames}" var="game">
                     <tr>
                         <th scope="col"><lightning:formattedText value="{!game.Name}"/></th>
-                        <th scope="col"><lightning:formattedText value="{!game.Game_Date__c}"/></th>
+                        <th scope="col"><lightning:formattedDateTime value="{!game.Game_Date__c}"/></th>
                         <th scope="col"><lightning:formattedText value="{!game.W_L__c}"/></th>
                         <th scope="col"><lightning:formattedNumber value="{!game.MIN__c}"/></th>
                         <th scope="col"><lightning:formattedNumber value="{!game.PTS__c}"/></th>                    

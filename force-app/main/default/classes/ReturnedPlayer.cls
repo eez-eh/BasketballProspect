@@ -1,8 +1,6 @@
 public class ReturnedPlayer implements IReturnedRecords {
 	public List<Player__c> manageReturnedRecords(HttpResponse response) {
-        // Deserialize the response into a list of records 
         List<String> profile = deserializeRespone(response);
-        // Create player record to return
         List<Player__c> players = new List<Player__c>();
         Player__c player = new Player__c(
         	First_Name__c = profile[1],
@@ -20,6 +18,7 @@ public class ReturnedPlayer implements IReturnedRecords {
         players.add(player);
         return players;
     }
+    
     // Deserialize the response into a list of records 
     private List<String> deserializeRespone(HttpResponse response) {
         PlayerResponse playerRsp = (PlayerResponse)JSON.deserialize(response.getBody(), PlayerResponse.class);

@@ -1,6 +1,5 @@
 @isTest
 public class test_f_HttpResponseFactory {
-	// Prospects response
     public static HttpResponse getProspects() {
         HttpResponse response = new HttpResponse();
         response.setHeader('Content-Type', 'application/json');
@@ -26,7 +25,6 @@ public class test_f_HttpResponseFactory {
         response.setStatusCode(200);
         return response;
     }
-    // Player response
     public static HttpResponse getPlayer() {
         HttpResponse response = new HttpResponse();
         response.setHeader('Content-Type', 'application/json');
@@ -42,7 +40,6 @@ public class test_f_HttpResponseFactory {
         response.setStatusCode(200);
         return response;
     }
-    // Games response
     public static HttpResponse getGames() {
         HttpResponse response = new HttpResponse();
         response.setHeader('Content-Type', 'application/json');

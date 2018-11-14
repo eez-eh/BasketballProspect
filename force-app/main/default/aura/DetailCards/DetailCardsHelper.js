@@ -34,7 +34,6 @@
                 games.shift();
                 component.set("v.games", games);
                 games.splice(5);
-                games.reverse();
                 component.set("v.lastGames", games);
             }
         });

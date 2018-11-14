@@ -8,7 +8,7 @@ public class GamesEndpoint implements INbaEndpoint {
         this.sInfo = sInfo;
         this.yearsAgo = yearsAgo;
     }
-    // create endpoint
+    
     public String createEndpoint() {
         String currentSeasonName = sInfo.getSeasonName(yearsAgo);
         String endpoint = 'https://stats.nba.com/stats/playergamelog/?PlayerID=' +

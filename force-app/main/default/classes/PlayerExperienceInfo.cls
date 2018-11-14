@@ -4,17 +4,16 @@ public class PlayerExperienceInfo {
     
     private PlayerExperienceInfo(String externalId, SeasonInfo sInfo) {
         seasons = new List<Season__c>();
-        // get a map with all seasons to track
         getListOfSeasonsToTrack(externalId, sInfo);
     }
     
     private void getListOfSeasonsToTrack(String externalId, SeasonInfo sInfo) {
-        // get the starting year of the first season
+        // get the starting year of the player's first season
         Player__c player = [SELECT Season_Experience__c FROM Player__c WHERE ExternalID__c = :externalId LIMIT 1];
-        // get a number of seasons to track
+        // get a number of seasons to track based on player's experiance
         Integer numberOfFullSeasons = Integer.valueOf(player.Season_Experience__c);
-        // create list of all seasons to track
         List<String> seasonsNames = new List<String>();
+        
         for (Integer i = 0; i < numberOfFullSeasons; i++) {
             seasonsNames.add(sInfo.getSeasonName(i));
         }

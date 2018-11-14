@@ -6,6 +6,7 @@
     <aura:attribute name="seasonAvg" type="Game__c"/>
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler event="c:SeasonSelected" action="{!c.handleSeasonSelect}"/>
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
     
     <lightning:card title="{!'Game Stats - Season ' + v.seasonAvg.Name}">
         <lightning:tabset selectedTabId="overview">
