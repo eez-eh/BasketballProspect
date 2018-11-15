@@ -1,10 +1,10 @@
 # Basketball Prospect Project
 This application can be used to track information about nba players, their bio profile and season by season statistics.
 
-![UML](https://github.com/eez-eh/BasketballProspect/blob/master/images/uml.jpg)
+![UML](https://raw.githubusercontent.com/eez-eh/BasketballProspect/master/images/uml.jpg)
 
-![Get List of Prospects](https://github.com/eez-eh/BasketballProspect/blob/master/images/refresh_prospects_list.gif)
+![Get List of Prospects](https://raw.githubusercontent.com/eez-eh/BasketballProspect/master/images/refresh_prospects_list.gif)
 
-![Add a Player](https://github.com/eez-eh/BasketballProspect/blob/master/images/add_player.gif)
+![Add a Player](https://raw.githubusercontent.com/eez-eh/BasketballProspect/master/images/add_player.gif)
 
-![Refresh Games Button](https://github.com/eez-eh/BasketballProspect/blob/master/images/refresh_games.gif)
+![Refresh Games Button](https://raw.githubusercontent.com/eez-eh/BasketballProspect/master/images/refresh_games.gif)
