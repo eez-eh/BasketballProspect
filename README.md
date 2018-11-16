@@ -14,7 +14,7 @@ Any choosen player from the list of potential prospects can be tracked more clos
 Records created in this way are displayed on the customized page layout using Lightning Components. There you can find detailed information about the player's record and his performances in the selected meeting or throughout the whole season.
 
 ![Add a Player](https://raw.githubusercontent.com/eez-eh/BasketballProspect/master/images/add_player.gif)
-### Refresh Game Button
+### Refresh Games Button
 This button allows to manually download the latest information about the player's recent performances.
 
 ![Refresh Games Button](https://raw.githubusercontent.com/eez-eh/BasketballProspect/master/images/refresh_games.gif)
