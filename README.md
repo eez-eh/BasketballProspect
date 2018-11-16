@@ -10,7 +10,7 @@ The application performs a query to an external database, retrieves information 
 
 ![Get List of Prospects](https://raw.githubusercontent.com/eez-eh/BasketballProspect/master/images/refresh_prospects_list.gif)
 ### Create player profile to track
-Any choosen player from the list of potential prospects can be tracked more closely. After selecting the player from the drop-down list a query is made to the external database, and the downloaded information is used to create a new Player__c record and Game__c records that reflect statistics from all the games performed by the player over the last 5 years.
+Any choosen player from the list of potential prospects can be tracked more closely. After selecting the player from drop-down list a query is made to an external database, and the downloaded information is used to create a new Player__c record and Game__c records that reflect statistics from all the games performed by the player over the last 5 years.
 Records created in this way are displayed on the customized page layout using Lightning Components. There you can find detailed information about the player's record and his performances in the selected meeting or throughout the whole season.
 
 ![Add a Player](https://raw.githubusercontent.com/eez-eh/BasketballProspect/master/images/add_player.gif)
