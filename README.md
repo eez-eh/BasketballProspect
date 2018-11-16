@@ -6,7 +6,7 @@ The UML diagram below shows classes and relationship between them in the applica
 ## Usage
 The basic functionality of the application is presented below.
 ### Create list of prospects
-The application performs a query to an external database, retrieves information about currently active players, and creates new custom object records on the Salesforce platform. Each record contains only basic information which allow to unambiguously identify the player. This list can be refreshed manually by clicking the button, or by scheduled Apex Job.
+The application performs a query to an external database, retrieves information about currently active players, and creates custom object records on the Salesforce platform. Each record contains only basic information which allow to unambiguously identify the player. This list can be refreshed manually by clicking the button, or by scheduled Apex Job.
 
 ![Get List of Prospects](https://raw.githubusercontent.com/eez-eh/BasketballProspect/master/images/refresh_prospects_list.gif)
 ### Create player profile to track
