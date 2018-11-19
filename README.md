@@ -1,5 +1,5 @@
 # Basketball Prospect Project
-This application can be used to track information about nba players: their bio profile and season by season statistics. The data is obtained by querying the external database [Stats NBA](https://stats.nba.com). The repository also includes all test classes that provide code coverage for deploying to production.
+This application can be used to track information about nba players: their bio profile and season by season statistics. The data is obtained by querying the external database [Stats NBA](https://stats.nba.com).
 The UML diagram below shows classes and relationship between them in the application.
 
 ![UML](https://raw.githubusercontent.com/eez-eh/BasketballProspect/master/images/uml.jpg)
